@@ -1,20 +1,36 @@
-<?php 
+<?php
 abstract class Hewan {
     protected $nama;
-    
+
     public function __construct($nama) {
         $this->nama = $nama;
     }
+    
     abstract public function bersuara();
+    
+    public function getNama() {
+        return $this->nama;
+    }
+
+    public function tampilkanInfo() {
+        $jenisHewan = $this->getJenisHewan();
+        echo "Nama: " . $this->nama . " (" . $jenisHewan . ")<br>";
+        echo "Suara: " . $this->bersuara() . "<br>";
+    }
+    
+
+    protected function getJenisHewan() {
+        return "Hewan";
+    }
 }
+
 class Anjing extends Hewan {
     public function bersuara() {
         return "Guk guk!";
     }
     
-    public function tampilkanInfo() {
-        echo "Nama: " . $this->nama . " (Anjing)<br>";
-        echo "Suara: " . $this->bersuara() . "<br>";
+    protected function getJenisHewan() {
+        return "Anjing";
     }
 }
 
@@ -22,10 +38,8 @@ class Kucing extends Hewan {
     public function bersuara() {
         return "Meow meow!";
     }
-    
-    public function tampilkanInfo() {
-        echo "Nama: " . $this->nama . " (Kucing)<br>";
-        echo "Suara: " . $this->bersuara() . "<br>";
+    protected function getJenisHewan() {
+        return "Kucing";
     }
 }
 
